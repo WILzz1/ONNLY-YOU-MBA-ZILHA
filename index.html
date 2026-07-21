@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ada Sesuatu Buat Kamu...</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    
+    /* --- PENGATURAN BACKGROUND FOTO --- */
+    background-image: url('sky.png'); /* Ganti dengan nama file/link foto kamu */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.4); /* Efek gelap sedikit biar teks tetap terbaca */
+    background-blend-mode: overlay;
+    /* ---------------------------------- */
+
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    margin: 0;
+  }
+  .container {
+    background: rgba(255, 255, 255, 0.85); /* Dibuat sedikit transparan */
+    backdrop-filter: blur(8px); /* Efek blur estetik */
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    max-width: 400px;
+    width: 100%;
+  }
+  .animasi {
+    font-size: 50px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  .boneka {
+    animation: loncat 1s infinite alternate ease-in-out;
+  }
+  .bunga {
+    animation: putar 4s linear infinite;
+  }
+  @keyframes loncat {
+    from { transform: translateY(0); }
+    to { transform: translateY(-25px); }
+  }
+  @keyframes putar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .teks {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    min-height: 120px;
+  }
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  button {
+    background-color: #ff6b81;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s, background-color 0.2s;
+  }
+  button:hover {
+    background-color: #ff4757;
+    transform: scale(1.05);
+  }
+  .btn-music {
+    background-color: #3742fa;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .btn-music:hover {
+    background-color: #5352ed;
+  }
+</style>
+</head>
+<body>
+
+  <!-- --- PENGATURAN LAGU --- -->
+  <audio id="bg-music" loop>
+    <!-- Ganti dengan nama file/link lagu mp3 kamu -->
+    <source src="jadian yuk.mp3" type="audio/mpeg">
+  </audio>
+  <!-- ----------------------- -->
+
+  <div class="container">
+    <div class="animasi">
+      <div class="bunga">🌸</div>
+      <div class="boneka">🧸</div>
+      <div class="bunga">💐</div>
+    </div>
+    
+    <div class="teks" id="pesan">
+      <strong>Eh [Zilha],</strong><br><br>
+      Gue mau ngomong sesuatu nih. Kita kan udah lumayan lama temenan, tapi jujur belakangan ini gue ngerasa ada yang beda... Coba klik tombol di bawah deh! 👇
+    </div>
+
+    <div class="btn-group">
+      <button onclick="swapPuitis()">Swap Puitis 💌</button>
+      <button onclick="swapLucu()">Swap Lucu 😂</button>
+    </div>
+    
+    <!-- Tombol Musik -->
+    <button class="btn-music" id="btn-music-toggle" onclick="toggleMusic()">Putar Lagu 🎵</button>
+  </div>
+
+  <script>
+    const teksPuitis = "<strong>Teruntuk Kamu,</strong><br><br>kamu suka denger lagu ga? ada tau lagu yang paling enak... lagu jadian yuk";
+    const teksLucu = "<strong>Woi [Zilha]!</strong><br><br>Kalo kata pepatah, tak kenal maka tak sayang. Tapi kita udah kenal, kok cuma gue yang sayang? Canda sayang~ Eh beneran deng. Ibarat Indomie seleraku, lu tuh masa depan gue. Jadian yuk, mumpung gue lagi ganteng banget kayak Leonardo DiCaprio!";
+
+    function swapPuitis() {
+      document.getElementById('pesan').innerHTML = teksPuitis;
+    }
+
+    function swapLucu() {
+      document.getElementById('pesan').innerHTML = teksLucu;
+    }
+
+    // Fitur Pemutar Musik
+    let isPlaying = false;
+    function toggleMusic() {
+      const music = document.getElementById("bg-music");
+      const btn = document.getElementById("btn-music-toggle");
+      
+      if (isPlaying) {
+        music.pause();
+        btn.innerHTML = "Putar Lagu 🎵";
+      } else {
+        music.play();
+        btn.innerHTML = "Jeda Lagu ⏸️";
+      }
+      isPlaying = !isPlaying;
+    }
+  </script>
+
+</body>
+</html>
